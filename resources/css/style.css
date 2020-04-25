@@ -6,7 +6,7 @@ body {
     -o-animation: AnimationName 20s ease infinite;
     animation: AnimationName 20s ease infinite;
     font-family: 'Cairo', sans-serif;
-    overflow:hidden;
+
     position: relative;
     top: 0;
     left: 0;
