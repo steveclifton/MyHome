@@ -13,7 +13,15 @@ class AddReadingTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('readings', function (Blueprint $table) {
+            $table->increments('readingid');
+            $table->integer('userid');
+            $table->string('key');
+            $table->float('value');
+            $table->text('note')->nullable();
+            $table->dateTime('client_created');
+            $table->timestamps();
+        });
     }
 
     /**
