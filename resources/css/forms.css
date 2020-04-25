@@ -84,6 +84,9 @@ a{color:inherit;text-decoration:none}
     text-security:circle;
     -webkit-text-security:circle;
 }
+.login-form .group .input {
+    color: #000000;
+}
 .login-form .group .label{
     color:#aaa;
     font-size:12px;
@@ -139,6 +142,9 @@ a{color:inherit;text-decoration:none}
 }
 .foot-lnk{
     text-align:center;
+}
+.foot-lnk a {
+    color: #000000;
 }
 
 
