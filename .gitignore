@@ -13,7 +13,7 @@ yarn-error.log
 *.iml
 *.xml
 /public/css/app.css
-/public/css/app.js
+/public/js/app.js
 .idea/workspace.xml
 .editorconfig
 
