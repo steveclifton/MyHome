@@ -6,6 +6,8 @@ body {
     -o-animation: AnimationName 20s ease infinite;
     animation: AnimationName 20s ease infinite;
     font-family: 'Cairo', sans-serif;
+    position: fixed;
+    overflow: hidden;
 }
 
 @-webkit-keyframes AnimationName {
