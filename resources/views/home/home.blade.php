@@ -4,33 +4,33 @@
 
 @section('content')
 
-    <div class="container" style="margin-top: 40px">
-        @if ( !empty($readings) )
-            <div class="row">
-                <table class="table table-dark table-hover" style="opacity: 70%">
-                    <thead>
+<div class="container mt100">
+    @if ( !empty($readings) )
+        <div class="row">
+            <table class="table table-dark table-hover" style="opacity: 70%">
+                <thead>
+                <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Temp</th>
+                    <th scope="col">Pressure</th>
+                    <th scope="col">Humidity</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($readings as $date => $reading)
                     <tr>
-                        <th scope="col">Time</th>
-                        <th scope="col">Temp</th>
-                        <th scope="col">Pressure</th>
-                        <th scope="col">Humidity</th>
+                        <th scope="row">{{ $date }}</th>
+                        <td>{{ number_format($reading['temperature'] ?? '', 1) }}c</td>
+                        <td>{{ $reading['pressure'] ?? '' }}mb</td>
+                        <td>{{ intval($reading['humidity'] ?? '') }}%</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($readings as $date => $reading)
-                        <tr>
-                            <th scope="row">{{ $date }}</th>
-                            <td>{{ number_format($reading['temperature'] ?? '', 1) }}c</td>
-                            <td>{{ $reading['pressure'] ?? '' }}mb</td>
-                            <td>{{ intval($reading['humidity'] ?? '') }}%</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @else
-            <div>No Readings Yet</div>
-        @endif
-    </div>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    @else
+        <div>No Readings Yet</div>
+    @endif
+</div>
 
 @endsection
