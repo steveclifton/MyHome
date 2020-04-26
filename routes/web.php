@@ -24,7 +24,8 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 /**
  * User Home Page
  */
-Route::get('/home', 'MyHomeController@index')->name('myhome');
+Route::get('home', 'MyHomeController@index')->name('myhome');
+Route::get('tokens', 'MyHomeController@getTokens')->name('tokens');
 
 
 /**

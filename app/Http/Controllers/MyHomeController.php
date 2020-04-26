@@ -19,10 +19,16 @@ class MyHomeController extends Controller
 
         $readings = [];
         foreach ($readingsTmp as $reading) {
-            $readings[$reading->client_created][$reading->key] = $reading->value;
+            $created = date('d-m-Y h:i', strtotime($reading->client_created));
+            $readings[$created][$reading->key] = $reading->value;
         }
 
         return view('home.home', compact('readings'));
+    }
+
+    public function getTokens(Request $request)
+    {
+        return view('home.tokens');
     }
 
 }

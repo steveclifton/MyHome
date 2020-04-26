@@ -4,17 +4,31 @@
 
 @section('content')
 
-    <div id="app">
-        <passport-personal-access-tokens></passport-personal-access-tokens>
-    </div>
-
-    @foreach($readings as $date => $reading)
-        {{ $date }}
-        @foreach($reading as $key => $value)
-            {{ $key . ': ' . $value }}
-        @endforeach
+    <div class="container">
         <br>
-    @endforeach
+        <div class="row">
+            <table class="table table-dark table-hover" style="opacity: 70%">
+                <thead>
+                <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Temperature</th>
+                    <th scope="col">Pressure</th>
+                    <th scope="col">Humidity</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($readings as $date => $reading)
+                    <tr>
+                        <th scope="row">{{ $date }}</th>
+                        <td>{{ $reading['temperature'] ?? '' }}c</td>
+                        <td>{{ $reading['pressure'] ?? '' }}mb</td>
+                        <td>{{ $reading['humidity'] ?? '' }}%</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
 
+        </div>
+    </div>
 
 @endsection
