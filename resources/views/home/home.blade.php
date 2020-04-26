@@ -11,7 +11,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Time</th>
-                        <th scope="col">Temperature</th>
+                        <th scope="col">Temp</th>
                         <th scope="col">Pressure</th>
                         <th scope="col">Humidity</th>
                     </tr>
