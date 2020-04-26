@@ -60,3 +60,9 @@ body {
     color: black;
 }
 
+.row {
+    margin-bottom: 10px;
+}
+.col {
+    margin-bottom: 10px;
+}

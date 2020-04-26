@@ -3,11 +3,60 @@
 @section ('title')Home | @endsection
 
 @section('content')
-
 <div class="container">
-    @if ( !empty($readings) )
+
+    <div class="row">
+        <div class="col">
+            <div class="card weather-card">
+                <div class="card-body pb-3">
+                    <h4 class="card-title font-weight-bold">Inside</h4>
+                    <p class="card-text">Last updated: {{ $summary['lastupdated'] ?? '' }}</p>
+
+                    <div class="d-flex justify-content-between" style="padding: 10px 0px 40px 0px">
+                        <p class="display-1 degree" style="margin: auto;">{{ number_format($summary['now'] ?? '', 1) }}&#176;</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="display-5"  style="margin: auto;">High</p>
+                        <p class="display-5"  style="margin: auto;">Low</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="display-4" style="color: red">{{ number_format($summary['high'] ?? '', 1) }}&#176;</p>
+                        <p class="display-4" style="color: blue">{{ number_format($summary['low'] ?? '', 1) }}&#176;</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>54% Humidity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card weather-card">
+                <div class="card-body pb-3">
+                    <h4 class="card-title font-weight-bold">Outdoor</h4>
+                    <p class="card-text">Last updated: {{ $summary['lastupdated'] ?? '' }}</p>
+
+                    <div class="d-flex justify-content-between" style="padding: 10px 0px 40px 0px">
+                        <p class="display-1 degree" style="margin: auto;">{{ number_format(($summary['now'] ?? '') - 5, 1) }}&#176;</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="display-5"  style="margin: auto;">High</p>
+                        <p class="display-5"  style="margin: auto;">Low</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="display-4" style="color: red">{{ number_format($summary['high'] ?? '', 1) }}&#176;</p>
+                        <p class="display-4" style="color: blue">{{ number_format($summary['low'] ?? '', 1) }}&#176;</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>54% Humidity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if ( !empty($table) )
         <div class="row">
-            <table class="table table-dark table-hover" style="opacity: 60%">
+            <div class="col">
+                <table class="table table-dark table-hover" style="opacity: 60%">
                 <thead>
                 <tr>
                     <th scope="col">Time</th>
@@ -17,7 +66,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($readings as $date => $reading)
+                @foreach($table as $date => $reading)
                     <tr>
                         <th scope="row">{{ $date }}</th>
                         <td>{{ number_format($reading['temperature'] ?? '', 1) }}c</td>
@@ -27,9 +76,8 @@
                 @endforeach
                 </tbody>
             </table>
+            </div>
         </div>
-    @else
-        <div>No Readings Yet</div>
     @endif
 </div>
 
