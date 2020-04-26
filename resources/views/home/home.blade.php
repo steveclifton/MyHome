@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container mt100">
+<div class="container">
     @if ( !empty($readings) )
         <div class="row">
             <table class="table table-dark table-hover" style="opacity: 70%">
