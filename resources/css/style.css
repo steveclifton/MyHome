@@ -6,8 +6,6 @@ body {
     -o-animation: AnimationName 20s ease infinite;
     animation: AnimationName 20s ease infinite;
     font-family: 'Cairo', sans-serif;
-
-    position: relative;
     top: 0;
     left: 0;
 }
@@ -37,7 +35,7 @@ body {
 .topnav {
     background-color:transparent;
     overflow: hidden;
-    padding-bottom:40px;
+    padding-bottom:20px;
     position: relative;
     top: 0;
     width:100%;

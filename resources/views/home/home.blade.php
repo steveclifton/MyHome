@@ -7,7 +7,7 @@
 <div class="container">
     @if ( !empty($readings) )
         <div class="row">
-            <table class="table table-dark table-hover" style="opacity: 70%">
+            <table class="table table-dark table-hover" style="opacity: 60%">
                 <thead>
                 <tr>
                     <th scope="col">Time</th>
