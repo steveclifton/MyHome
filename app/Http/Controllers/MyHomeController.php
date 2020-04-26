@@ -19,7 +19,7 @@ class MyHomeController extends Controller
 
         $readings = [];
         foreach ($readingsTmp as $reading) {
-            $created = date('d F Y - h:ia', strtotime($reading->client_created));
+            $created = date('D d F - H:i', strtotime($reading->client_created));
             $readings[$created][$reading->key] = $reading->value;
         }
 
