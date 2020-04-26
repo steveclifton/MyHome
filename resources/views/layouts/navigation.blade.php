@@ -1,5 +1,4 @@
-
-<nav class="topnav">
+<div class="topnav">
 
     <div class="item">
         <a href="/">My Weather</a>
@@ -14,5 +13,7 @@
             <a href="/logout">Logout</a>
         </div>
     @endauth
-</nav>
+</div>
+
+
 
