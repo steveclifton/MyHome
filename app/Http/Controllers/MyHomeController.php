@@ -15,8 +15,11 @@ class MyHomeController extends Controller
 
     public function index()
     {
+        date_default_timezone_set('Pacific/Auckland');
+        $date = date('Y-m-d');
+
         $readingsTmp = Reading::where('userid', Auth::id())
-                                ->whereRaw('Date(client_created) = CURDATE()')
+                                ->whereRaw("Date(client_created) = '" . $date . "'")
                                 ->orderBy('client_created', 'DESC')
                                 ->get();
 
