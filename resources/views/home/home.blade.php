@@ -24,7 +24,7 @@
                         <p class="display-4" style="color: blue">{{ number_format($summary['low'] ?? '', 1) }}&#176;</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>54% Humidity</p>
+                        <p>{{ round($summary['humidity'] ?? '') }}% Humidity</p>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         <p class="display-4" style="color: blue">{{ number_format($summary['low'] ?? '', 1) }}&#176;</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>54% Humidity</p>
+                        <p>{{ round($summary['humidity'] ?? '') }}% Humidity</p>
                     </div>
                 </div>
             </div>

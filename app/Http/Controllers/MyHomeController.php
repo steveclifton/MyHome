@@ -21,7 +21,6 @@ class MyHomeController extends Controller
                                 ->get();
 
 
-
         $table = [];
         $summary = [
             'low' => 99,
@@ -45,6 +44,10 @@ class MyHomeController extends Controller
                 if ($summary['high'] < $reading->value) {
                     $summary['high'] = $reading->value;
                 }
+            }
+
+            if (empty($summary['humidity']) && $reading->key == 'humidity') {
+                $summary['humidity'] = $reading->value;
             }
         }
 
