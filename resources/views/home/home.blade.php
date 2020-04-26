@@ -20,9 +20,9 @@
                 @foreach($readings as $date => $reading)
                     <tr>
                         <th scope="row">{{ $date }}</th>
-                        <td>{{ number_format($reading['temperature'] ?? '', 2) }}c</td>
+                        <td>{{ number_format($reading['temperature'] ?? '', 1) }}c</td>
                         <td>{{ $reading['pressure'] ?? '' }}mb</td>
-                        <td>{{ number_format($reading['humidity'] ?? '', 2) }}%</td>
+                        <td>{{ intval($reading['humidity'] ?? '') }}%</td>
                     </tr>
                 @endforeach
                 </tbody>
