@@ -8,5 +8,5 @@ class Reading extends Model
 {
     protected $primaryKey = 'readingid';
 
-    protected $fillable = ['userid', 'key', 'value', 'client_created'];
+    protected $fillable = ['userid', 'key', 'value', 'client_created', 'deviceid'];
 }
