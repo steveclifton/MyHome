@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.templates.auth')
 
 @section ('title')Tokens | @endsection
 
@@ -9,5 +9,5 @@
             <passport-personal-access-tokens></passport-personal-access-tokens>
         </div>
     </div>
-
+    <script type="text/javascript" src="js/app.js"></script>
 @endsection

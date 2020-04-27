@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.templates.default')
 
 @section ('title')@endsection
 
@@ -16,7 +16,7 @@
                 <div class="group">
                     <input name="email" id="user" type="email" class="input" placeholder="Email">
                     @error('email')
-                        <span class="alert-error" role="alert">
+                        <span class="alert-error-forms" role="alert">
                             <strong>Email or password incorrect</strong>
                         </span>
                     @enderror
@@ -47,7 +47,7 @@
                 <div class="group">
                     <input name="registername" value="{{old('registername')}}" type="text" class="input" placeholder="Name" required>
                     @error('registeremail')
-                        <span class="alert-error" role="alert">
+                        <span class="alert-error-forms" role="alert">
                             <strong>Please enter a name</strong>
                         </span>
                     @enderror
@@ -56,7 +56,7 @@
                 <div class="group">
                     <input name="registeremail" value="{{old('registeremail')}}" type="email" class="input" placeholder="Email" required>
                     @error('registeremail')
-                        <span class="alert-error" role="alert">
+                        <span class="alert-error-forms" role="alert">
                             <strong>Check your email and try again</strong>
                         </span>
                     @enderror
@@ -64,7 +64,7 @@
                 <div class="group">
                     <input name="registerpassword" type="password" class="input" data-type="password" placeholder="Password" required>
                     @error('registerpassword')
-                        <span class="alert-error" role="alert">
+                        <span class="alert-error-forms" role="alert">
                             <strong>Check Password (min 8 characters)</strong>
                         </span>
                     @enderror
@@ -80,7 +80,6 @@
     </div>
 </div>
 <script>
-
     $(function() {
         @if (session('registerAttempt'))
             $('#tab-2').trigger('click');

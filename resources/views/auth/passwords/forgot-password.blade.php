@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.templates.default')
 
 @section ('title')Forgot Password | @endsection
 
@@ -25,7 +25,7 @@
                     </div>
                     @if (session('status'))
                         <div>
-                            <span class="alert-success" role="alert">
+                            <span class="alert-success-forms" role="alert">
                                 <strong>{{ session('status') }}</strong>
                             </span>
                         </div>

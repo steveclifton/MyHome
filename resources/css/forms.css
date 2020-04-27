@@ -147,14 +147,15 @@ a{color:inherit;text-decoration:none}
     color: #000000;
 }
 
-.alert-error strong {
+/*Form error stuff*/
+.alert-error-forms strong {
     color: #f86565e3;
 }
 
-.alert-success {
+.alert-success-forms {
     position: absolute;
 }
-.alert-success strong {
+.alert-success-forms strong {
     color: #77f865e3;
 }
 
