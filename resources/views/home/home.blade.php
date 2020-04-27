@@ -5,6 +5,7 @@
 @section('content')
 <div class="container">
 
+    @if (!empty($summary))
     <div class="row">
         <div class="col">
             <div class="card weather-card">
@@ -53,6 +54,59 @@
             </div>
         </div>
     </div>
+    @endif
+
+    @if ( !empty($chart) )
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="chLine"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script>
+            var chartSourceData = {!! json_encode($chart) !!};
+            var chLine = document.getElementById("chLine");
+
+            if (chLine) {
+                new Chart(chLine, {
+                    type: 'line',
+                    data: {
+                        labels: chartSourceData.times,
+                        datasets: [
+                            {
+                                data: chartSourceData.temps,
+                                // backgroundColor: '#2ebf91',
+                                borderColor: '#8360c3',
+                                borderWidth: 4,
+                                pointBackgroundColor: '#007bff'
+                            }
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Inside'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: false
+                                }
+                            }]
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                });
+            }
+        </script>
+    @endif
     @if ( !empty($table) )
         <div class="row">
             <div class="col">

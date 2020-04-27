@@ -23,13 +23,18 @@ class MyHomeController extends Controller
                                 ->orderBy('client_created', 'DESC')
                                 ->get();
 
-
+        $chart = [];
         $table = [];
         $summary = [
             'low' => 99,
             'high' => 0
         ];
         foreach ($readingsTmp as $reading) {
+
+            if (empty($reading->client_created)) {
+                continue;
+            }
+
             $created = date('D d F - H:i', strtotime($reading->client_created));
             $table[$created][$reading->key] = $reading->value;
 
@@ -47,14 +52,29 @@ class MyHomeController extends Controller
                 if ($summary['high'] < $reading->value) {
                     $summary['high'] = $reading->value;
                 }
-            }
 
+                // Chart
+                $time = date('H:i', strtotime($reading->client_created));
+                list($hour, $minutes) = explode(':', $time);
+
+                if (!empty($minutes) && in_array($minutes, ['00'])) {
+                    $chart['times'][] = $time;
+                    $chart['temps'][] = $reading->value;
+                }
+            }
+            
             if (empty($summary['humidity']) && $reading->key == 'humidity') {
                 $summary['humidity'] = $reading->value;
             }
+
         }
 
-        return view('home.home', compact('table', 'summary'));
+        if (!empty($chart)) {
+            $chart['times'] = array_reverse($chart['times']);
+            $chart['temps'] = array_reverse($chart['temps']);
+        }
+
+        return view('home.home', compact('table', 'summary', 'chart'));
     }
 
     public function getTokens(Request $request)
