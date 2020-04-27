@@ -22,13 +22,14 @@ class ApiController extends Controller
             $reading = (object) $reading;
 
             $clientDatabaseCreated = ($reading->created ?? null);
+            $clientDeviceId = ($reading->deviceid ?? null);
 
-            if (empty($clientDatabaseCreated)) {
+            if (empty($clientDatabaseCreated) || empty($clientDeviceId)) {
                 continue;
             }
 
             // Remove the 2 fields used for ID/timestamp - rest are readings
-            unset($reading->created);
+            unset($reading->created, $reading->deviceid);
 
             // Loop over the remaining fields as these are key value readings
             foreach ((array) $reading as $key => $value) {
@@ -37,6 +38,7 @@ class ApiController extends Controller
                     'userid' => $user->id,
                     'key' => $key,
                     'value' => $value,
+                    'deviceid' => $clientDeviceId,
                     'client_created' => $clientDatabaseCreated,
                 ]);
             }
