@@ -30,7 +30,9 @@
                 </div>
             </div>
         </div>
-        <div class="col">
+
+        @if(0)
+            <div class="col">
             <div class="card weather-card">
                 <div class="card-body pb-3">
                     <h4 class="card-title font-weight-bold">Outdoor</h4>
@@ -53,6 +55,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
     @endif
 

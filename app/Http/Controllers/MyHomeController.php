@@ -62,7 +62,7 @@ class MyHomeController extends Controller
                     $chart['temps'][] = $reading->value;
                 }
             }
-            
+
             if (empty($summary['humidity']) && $reading->key == 'humidity') {
                 $summary['humidity'] = $reading->value;
             }
