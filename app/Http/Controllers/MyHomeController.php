@@ -69,9 +69,10 @@ class MyHomeController extends Controller
                 $time = date('H:i', strtotime($reading->client_created));
                 list($hour, $minutes) = explode(':', $time);
 
-                if (!empty($minutes) && in_array($minutes, ['00'])) {
-                    $chart['times'][] = $time;
-                    $chart['temps'][] = $reading->value;
+                if (!empty($minutes) && in_array($minutes, ['00', '05'])) {
+                    $chart[$deviceid]['name'] = !empty($chart[$deviceid]['name']) ? $chart[$deviceid]['name'] : $summary[$deviceid]['name'];
+                    $chart[$deviceid]['times'][] = $time;
+                    $chart[$deviceid]['temps'][] = $reading->value;
                 }
             }
 
@@ -82,8 +83,10 @@ class MyHomeController extends Controller
         }
 
         if (!empty($chart)) {
-            $chart['times'] = array_reverse($chart['times']);
-            $chart['temps'] = array_reverse($chart['temps']);
+            foreach ($chart as $key => $item) {
+                $chart[$key]['times'] = array_reverse($item['times']);
+                $chart[$key]['temps'] = array_reverse($item['temps']);
+            }
         }
 
         return view('home.home', compact('table', 'summary', 'chart'));
