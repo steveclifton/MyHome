@@ -35,7 +35,7 @@ class MyHomeController extends Controller
             $deviceid = $reading->deviceid;
 
             $created = date('D d F - H:i', strtotime($reading->client_created));
-            $table[$created][$reading->key] = $reading->value;
+            //$table[$created][$reading->key] = $reading->value;
 
             $summary[$deviceid]['name'] = $deviceid == '1' ? 'Inside' : 'Outside';
 
