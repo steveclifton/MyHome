@@ -25,32 +25,44 @@ class MyHomeController extends Controller
 
         $chart = [];
         $table = [];
-        $summary = [
-            'low' => 99,
-            'high' => 0
-        ];
+        $summary = [];
         foreach ($readingsTmp as $reading) {
 
             if (empty($reading->client_created)) {
                 continue;
             }
 
+            $deviceid = $reading->deviceid;
+
             $created = date('D d F - H:i', strtotime($reading->client_created));
             $table[$created][$reading->key] = $reading->value;
 
-            if (empty($summary['lastupdated'])) {
-                $summary['lastupdated'] = date('D, h:i A', strtotime($reading->client_created));
+            $summary[$deviceid]['name'] = $deviceid == '1' ? 'Inside' : 'Outside';
+
+            if (empty($summary[$deviceid]['lastupdated'])) {
+                $summary[$deviceid]['lastupdated'] = date('D, h:i A', strtotime($reading->client_created));
             }
 
             if ($reading->key == 'temperature') {
-                if (empty($summary['now'])) {
-                    $summary['now'] = $reading->value;
+
+                if (empty($summary[$deviceid]['now'])) {
+                    $summary[$deviceid]['now'] = $reading->value;
                 }
-                if ($summary['low'] > $reading->value) {
-                    $summary['low'] = $reading->value;
+
+                // Low
+                if (empty($summary[$deviceid]['low'])) {
+                    $summary[$deviceid]['low'] = 99;
                 }
-                if ($summary['high'] < $reading->value) {
-                    $summary['high'] = $reading->value;
+                if ($summary[$deviceid]['low'] > $reading->value) {
+                    $summary[$deviceid]['low'] = $reading->value;
+                }
+
+                // High
+                if (empty($summary[$deviceid]['high'])) {
+                    $summary[$deviceid]['high'] = 0;
+                }
+                if ($summary[$deviceid]['high'] < $reading->value) {
+                    $summary[$deviceid]['high'] = $reading->value;
                 }
 
                 // Chart
@@ -63,8 +75,8 @@ class MyHomeController extends Controller
                 }
             }
 
-            if (empty($summary['humidity']) && $reading->key == 'humidity') {
-                $summary['humidity'] = $reading->value;
+            if (empty($summary[$deviceid]['humidity']) && $reading->key == 'humidity') {
+                $summary[$deviceid]['humidity'] = $reading->value;
             }
 
         }

@@ -21,27 +21,18 @@ class ApiController extends Controller
         foreach ($request->data as $reading) {
             $reading = (object) $reading;
 
-            $clientDatabaseCreated = ($reading->created ?? null);
-            $clientDeviceId = ($reading->deviceid ?? null);
-
-            if (empty($clientDatabaseCreated) || empty($clientDeviceId)) {
+            if (empty($reading->created) || empty($reading->deviceid)) {
                 continue;
             }
 
-            // Remove the 2 fields used for ID/timestamp - rest are readings
-            unset($reading->created, $reading->deviceid);
+            Reading::create([
+                'userid' => $user->id,
+                'key' => $reading->key,
+                'value' => $reading->value,
+                'deviceid' => $reading->deviceid,
+                'client_created' => date('Y-m-d h:i:s', strtotime($reading->created)),
+            ]);
 
-            // Loop over the remaining fields as these are key value readings
-            foreach ((array) $reading as $key => $value) {
-
-                Reading::create([
-                    'userid' => $user->id,
-                    'key' => $key,
-                    'value' => $value,
-                    'deviceid' => $clientDeviceId,
-                    'client_created' => $clientDatabaseCreated,
-                ]);
-            }
         }
 
         return response('Upload Successful', 200);

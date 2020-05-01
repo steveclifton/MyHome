@@ -7,55 +7,31 @@
 
     @if (!empty($summary))
     <div class="row">
-        <div class="col">
-            <div class="card weather-card">
-                <div class="card-body pb-3">
-                    <h4 class="card-title font-weight-bold">Inside</h4>
-                    <p class="card-text">Last updated: {{ $summary['lastupdated'] ?? '' }}</p>
-
-                    <div class="d-flex justify-content-between" style="padding: 10px 0px 40px 0px">
-                        <p class="display-1 degree" style="margin: auto;">{{ number_format($summary['now'] ?? '', 1) }}&#176;</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="display-5"  style="margin: auto;">High</p>
-                        <p class="display-5"  style="margin: auto;">Low</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="display-4" style="color: red">{{ number_format($summary['high'] ?? '', 1) }}&#176;</p>
-                        <p class="display-4" style="color: blue">{{ number_format($summary['low'] ?? '', 1) }}&#176;</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p>{{ round($summary['humidity'] ?? '') }}% Humidity</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @if(0)
+        @foreach ($summary as $sum)
             <div class="col">
-            <div class="card weather-card">
-                <div class="card-body pb-3">
-                    <h4 class="card-title font-weight-bold">Outdoor</h4>
-                    <p class="card-text">Last updated: {{ $summary['lastupdated'] ?? '' }}</p>
+                <div class="card weather-card">
+                    <div class="card-body pb-3">
+                        <h4 class="card-title font-weight-bold">{{ $sum['name'] }}</h4>
+                        <p class="card-text">Last updated: {{ $sum['lastupdated'] ?? '' }}</p>
 
-                    <div class="d-flex justify-content-between" style="padding: 10px 0px 40px 0px">
-                        <p class="display-1 degree" style="margin: auto;">{{ number_format(($summary['now'] ?? '') - 5, 1) }}&#176;</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="display-5"  style="margin: auto;">High</p>
-                        <p class="display-5"  style="margin: auto;">Low</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="display-4" style="color: red">{{ number_format($summary['high'] ?? '', 1) }}&#176;</p>
-                        <p class="display-4" style="color: blue">{{ number_format($summary['low'] ?? '', 1) }}&#176;</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p>{{ round($summary['humidity'] ?? '') }}% Humidity</p>
+                        <div class="d-flex justify-content-between" style="padding: 10px 0px 40px 0px">
+                            <p class="display-1 degree" style="margin: auto;">{{ number_format($sum['now'] ?? 0, 1) }}&#176;</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="display-5"  style="margin: auto;">High</p>
+                            <p class="display-5"  style="margin: auto;">Low</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="display-4" style="color: red">{{ number_format($sum['high'] ?? 0, 1) }}&#176;</p>
+                            <p class="display-4" style="color: blue">{{ number_format($sum['low'] ?? 0, 1) }}&#176;</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>{{ round($summary['humidity'] ?? '') }}% Humidity</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        @endif
+        @endforeach
     </div>
     @endif
 
