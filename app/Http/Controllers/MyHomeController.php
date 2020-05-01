@@ -69,7 +69,7 @@ class MyHomeController extends Controller
                 $time = date('H:i', strtotime($reading->client_created));
                 list($hour, $minutes) = explode(':', $time);
 
-                if (!empty($minutes) && in_array($minutes, ['00', '05'])) {
+                if (!empty($minutes) && in_array($minutes, ['00'])) {
                     $chart[$deviceid]['name'] = !empty($chart[$deviceid]['name']) ? $chart[$deviceid]['name'] : $summary[$deviceid]['name'];
                     $chart[$deviceid]['times'][] = $time;
                     $chart[$deviceid]['temps'][] = $reading->value;
