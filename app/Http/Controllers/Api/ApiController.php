@@ -30,7 +30,7 @@ class ApiController extends Controller
                 'key' => $reading->key,
                 'value' => $reading->value,
                 'deviceid' => $reading->deviceid,
-                'client_created' => date('Y-m-d h:i:s', strtotime($reading->created)),
+                'client_created' => $reading->created,
             ]);
 
         }
