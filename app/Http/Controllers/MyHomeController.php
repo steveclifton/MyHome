@@ -37,7 +37,18 @@ class MyHomeController extends Controller
             $created = date('D d F - H:i', strtotime($reading->client_created));
             //$table[$created][$reading->key] = $reading->value;
 
-            $summary[$deviceid]['name'] = $deviceid == '1' ? 'Inside' : 'Outside';
+            $summary[$deviceid]['name'] = '';
+
+            if ($deviceid == '1') {
+                $summary[$deviceid]['name'] = 'Inside';
+            }
+            else if ($deviceid == '2') {
+                $summary[$deviceid]['name'] = 'Outside';
+            }
+            else if ($deviceid == '3') {
+                $summary[$deviceid]['name'] = 'Bedroom';
+            }
+
 
             if (empty($summary[$deviceid]['lastupdated'])) {
                 $summary[$deviceid]['lastupdated'] = date('D, h:i A', strtotime($reading->client_created));
