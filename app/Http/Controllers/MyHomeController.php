@@ -40,7 +40,7 @@ class MyHomeController extends Controller
             $summary[$deviceid]['name'] = '';
 
             if ($deviceid == '1') {
-                $summary[$deviceid]['name'] = 'Inside';
+                $summary[$deviceid]['name'] = 'Lounge';
             }
             else if ($deviceid == '2') {
                 $summary[$deviceid]['name'] = 'Outside';
