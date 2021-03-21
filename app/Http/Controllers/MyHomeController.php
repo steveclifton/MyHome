@@ -104,6 +104,10 @@ class MyHomeController extends Controller
             return $a['name'] <=> $b['name'];
         });
 
+        uasort($chart, function($a, $b) {
+            return $a['name'] <=> $b['name'];
+        });
+
         return view('home.home', compact('table', 'summary', 'chart'));
     }
 
