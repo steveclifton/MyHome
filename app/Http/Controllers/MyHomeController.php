@@ -51,6 +51,9 @@ class MyHomeController extends Controller
             else if ($deviceid == '4') {
                 $summary[$deviceid]['name'] = 'Ollie\'s Bedroom';
             }
+            else if ($deviceid == '5') {
+                $summary[$deviceid]['name'] = 'Garage';
+            }
 
             if (empty($summary[$deviceid]['lastupdated'])) {
                 $summary[$deviceid]['lastupdated'] = date('D, h:i A', strtotime($reading->client_created));
