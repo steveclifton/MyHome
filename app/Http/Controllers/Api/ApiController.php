@@ -56,6 +56,7 @@ class ApiController extends Controller
             }
 
             $return[$name] = [
+                'name' => $name,
                 'lastupdated' => date('D, h:i A', strtotime($reading->client_created)),
                 'temp' => $reading->value
             ];
