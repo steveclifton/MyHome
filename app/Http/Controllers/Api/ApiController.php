@@ -43,14 +43,17 @@ class ApiController extends Controller
         date_default_timezone_set('Pacific/Auckland');
 
         $readingsTmp = Reading::where('userid', Auth::id())
+            ->whereRaw("Date(client_created) = '" . date('Y-m-d') . "'")
             ->orderBy('client_created', 'DESC')
-            ->groupBy('deviceid')
             ->get();
 
         $return = [];
         foreach ($readingsTmp as $reading) {
-
             $name = $this->getDeviceName($reading->deviceid);
+
+            if (isset($return[$name])) {
+                continue;
+            }
 
             $return[$name] = [
                 'lastupdated' => date('D, h:i A', strtotime($reading->client_created)),
