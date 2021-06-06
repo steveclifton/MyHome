@@ -62,7 +62,7 @@ class ApiController extends Controller
             ];
         }
 
-        return $return;
+        return array_values($return);
 
     }
 }
