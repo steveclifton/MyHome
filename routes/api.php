@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api', 'throttle:10,1')->post('/home/reading', 'Api\ApiController@handle');
+Route::middleware('auth:api', 'throttle:10,1')->get('/home/current', 'Api\ApiController@getMyCurrentHomeData');
+
 

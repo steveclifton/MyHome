@@ -37,4 +37,28 @@ class ApiController extends Controller
 
         return response('Upload Successful', 200);
     }
+
+    public function getMyCurrentHomeData()
+    {
+        date_default_timezone_set('Pacific/Auckland');
+
+        $readingsTmp = Reading::where('userid', Auth::id())
+            ->orderBy('client_created', 'DESC')
+            ->groupBy('deviceid')
+            ->get();
+
+        $return = [];
+        foreach ($readingsTmp as $reading) {
+
+            $name = $this->getDeviceName($reading->deviceid);
+
+            $return[$name] = [
+                'lastupdated' => date('D, h:i A', strtotime($reading->client_created)),
+                'temp' => $reading->value
+            ];
+        }
+
+        return $return;
+
+    }
 }

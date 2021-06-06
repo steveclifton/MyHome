@@ -36,24 +36,7 @@ class MyHomeController extends Controller
 
             $created = date('D d F - H:i', strtotime($reading->client_created));
 
-
-            $summary[$deviceid]['name'] = '';
-
-            if ($deviceid == '1') {
-                $summary[$deviceid]['name'] = 'Lounge';
-            }
-            else if ($deviceid == '2') {
-                $summary[$deviceid]['name'] = 'Outside';
-            }
-            else if ($deviceid == '3') {
-                $summary[$deviceid]['name'] = 'Bedroom';
-            }
-            else if ($deviceid == '4') {
-                $summary[$deviceid]['name'] = 'Ollie\'s Bedroom';
-            }
-            else if ($deviceid == '5') {
-                $summary[$deviceid]['name'] = 'Garage';
-            }
+            $summary[$deviceid]['name'] = $this->getDeviceName($deviceid);
 
             if (empty($summary[$deviceid]['lastupdated'])) {
                 $summary[$deviceid]['lastupdated'] = date('D, h:i A', strtotime($reading->client_created));
